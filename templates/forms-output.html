@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>
+      Forms
+    </title>
+    <style>
+<!--      form {-->
+<!--        background-image: url("back.png");-->
+<!--        padding: 20px;-->
+<!--        border: 2px solid black;-->
+<!--        margin: 0 auto;-->
+<!--        width: 500px;-->
+<!--        color: silver;-->
+<!--      }-->
+
+<!--      body {-->
+<!--        background-color: darkgrey;-->
+<!--      }-->
+
+<!--      input[type="text"],-->
+<!--      input[type="password"],-->
+<!--      input[type="email"] {-->
+<!--        width: 300px;-->
+<!--        height: 20px;-->
+<!--        border: 4px solid black;-->
+<!--      }-->
+
+<!--      select {-->
+<!--        padding: 20px;-->
+<!--        margin: 50px;-->
+<!--      }-->
+    </style>
+  </head>
+
+  <body>
+    <form>
+      <table>
+        <center>
+            <font color="DodgerBlue" size="5" style="font-family: avenir">
+                <body bgcolor="lightgrey">
+                    <h1>SAVE SUCCESSFUL</h1><br>
+                    <h2>Following Apply has been added to the database</h2><br>
+                    <h2>{{ user }}</h2><br>
+                    <title>Apply Output</title>
+                        <form action="/Forms-Out" autocomplete="on" method = "GET">
+        
+                            <button type="submit" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">GO BACK</button><br><br>
+        
+                        </form>
+                </body>
+            </font>
+        </center>
+      </table>
+    </form>
+  </body>
+
+</html>

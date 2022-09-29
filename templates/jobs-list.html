@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Bootstrap CSS -->
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+            crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css" />
+
+
+        <title>Job List</title>
+    </head>
+
+    <body>
+        <!--nav-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="">Hi,Welcome</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{url_for('listEmployee')}}">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('listJob')}}">Jobs</a>
+                        </li>
+
+
+                    </ul>
+                    <form class="d-flex">
+                        <div class="input-group">
+                            <input type="search" class=" form-control form-control-sm" placeholder="Search"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-success btn-sm" type="submit" id="button-addon2"><i
+                                        class="fa fa-search">
+                                    </i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="/logout" class="ml-3 btn btn-sm btn-danger"onclick="return confirm('Are You Sure For Logout?'">Log Out</a>
+                </div>
+            </div>
+        </nav>
+        <!--dashboard contents-->
+        <div class="container-fluid">
+            <div class="row mt-3">
+                <div class="col-lg-3 col-md-3">
+                    <div class="list-group small">
+                        <div class="list-group-item active">Job Data</div>
+                        <a href="#" class="list-group-item " data-toggle="modal" data-target="#add_job">Add
+                            Jobs</a>
+                        <a href="{{ url_for('listJob')}}" class="list-group-item">View All Jobs</a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9" style="padding-left: 5%">
+                    <table class="table table-striped table-hover bg-white small">
+                        <thread>
+                        <tr class="table-dark">
+                            <th scope="col">Id</th>
+                            <th scope="col">Job Name</th>
+
+                            <th scope="col">Details</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+{% for row in job %}
+                        </tr>
+                        </thread>
+
+                        <tbody>
+
+                        <tr>
+                            <td>{{row.0}}</td>
+                            <td>{{row.2}}</td>
+                            <td><a href="/editJob/{{row.0}}" class="btn btn-sm btn-info btn-block" data-toggle="modal"
+                                data-target="#job_details1">Details</a></td>
+                            <td><a href="/editJob/{{row.0}}" class="btn btn-sm btn-warning btn-block" data-toggle="modal"
+                                data-target="#edit_job_details1">Edit</a></td>
+                            <td><a href="/deleteJob/{{row.0}}" class="btn btn-sm btn-danger btn-block"
+                                onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                            </td>
+                        </tr>
+{% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+{% for row in job %}
+        <!--Add Modal -->
+        <form action="{{url_for('addJob')}}" autocomplete="on" method="POST" enctype="multipart/form-data">
+
+        <div class="modal fade" id="add_job" tabindex="-1" aria-labelledby="add_job" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Job Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/addJob" autocomplete="on" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <input type="date" class="form-control form-control-sm" name="date_j" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-sm" name="job" placeholder="Job Name"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+
+                                <button type="submit" class="btn btn-sm btn-success btn-block">Add New Job</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </form>
+
+        <!--Detail Modal -->
+        <div class="modal fade" id="job_details1" tabindex="-1" aria-labelledby="job_details1"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exxampleModalLabel">Job Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Job Date</th>
+                            <td>{{row.1}}</td>
+                        </tr>
+                        <tr>
+                            <th>ID</th>
+                            <td>{{row.0}}</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{row.2}}</td>
+                        </tr>
+                    </table>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!--Edit Details-->
+        <div class="modal fade" id="edit_job_details1" tabindex="-1" aria-labelledby="edit_job_details1"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exsampleModalLabel">Add Job Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/updateJob/{{row.0}}" method="POST">
+                            <div>
+                                <p class="text-muted">Here the details!</p>
+                            </div>
+                            <div class="mb-3">
+
+                                <input type="date" class="form-control form-control-sm" value="{{row.1}}" name="date_j" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-sm  " value="{{row.2}}" name="job"
+                                    required>
+                                <button type="submit" class="btn btn-sm btn-warning btn-block">Edit and Save</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+{% endfor %}
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+        </script>
+    </body>
+
+</html>

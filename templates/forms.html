@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>
+      Forms
+    </title>
+    <style>
+      form {
+        background-image: url("back.png");
+        padding: 20px;
+        border: 2px solid black;
+        margin: 0 auto;
+        width: 500px;
+        color: silver;
+      }
+
+      body {
+        background-color: darkgrey;
+      }
+
+      input[type="text"],
+      input[type="password"],
+      input[type="email"] {
+        width: 300px;
+        height: 20px;
+        border: 4px solid black;
+      }
+
+      select {
+        padding: 20px;
+        margin: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form>
+      <table>
+        <h1>Fill the Details</h1>
+        <tr>
+          <td>
+            <label for="user">Username</label>
+          </td>
+          <td>
+            <input type="text" id="user" name="user" required />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="email">EmailId</label>
+          </td>
+          <td>
+
+            <input type="email" id="email" name="email" required />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="pass">Password</label>
+          </td>
+          <td>
+            <input type="password" id="pass" name="pass" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="gender">Gender</label>
+          </td>
+          <td>
+            Male: <input type="radio" value="male" name="gender" /><br />Female:
+            <input type="radio" value="female" name="gender" />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label for="Skills">Skills</label>
+          </td>
+
+          <td>
+            C#<input type="checkbox" value="job" name="C#" /><br />
+            Html <input type="checkbox" value="job" name="Html" /> <br />
+            Python<input type="checkbox" value="job" name="Python" /> <br />
+            Java<input type="checkbox" value="job" name="Java" />
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="Skills">For which job/job's do you want to apply</label>
+          </td>
+
+          <td>
+
+            Graphic Designer<input type="checkbox" value="job" name="Graphic Designer" /><br />
+            Web Designer<input type="checkbox" value="job" name="Web Designer" /><br />
+            Web Developer<input type="checkbox" value="job" name="Web Developer" />
+          </td>
+        </tr>
+        <tr>
+          <td><label>Select your Country </label></td>
+          <td>
+            <select name="country" id="country">
+              <option value="india">india</option>
+              <option value="uk">UK</option>
+              <option value="usa">USA</option>
+              <option value="china">China</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="text">Why you are applying?</label>
+          </td>
+          <td><textarea name="text" cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+          <td>
+            <input type="submit" name="submit_form" value="Apply" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+
+</html>
